@@ -1,0 +1,133 @@
+/* css variables */
+:root {
+  --primary: #3FCA89;
+  --secondary: #ADD2C1;
+  --alizatin: #e74c3c;
+  --dark: #0E0E0F;
+  --grey-3: #555555;
+  --grey-2: #707070;
+  --grey-1: #8B8B8B;
+  --grey-0: #A7A4A4;
+  --lynx-white: #f5f6fa;
+  --clouds: #ecf0f1;
+  --btn-radius: 6px;
+}
+
+/* css variables / end */
+
+/* reset style */
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--lynx-white);
+}
+
+a {
+  text-decoration: none;
+  color: #333;
+}
+
+ul {
+  list-style-type: none;
+}
+
+i {
+  font-size: 25px;
+}
+
+/* reset style / end */
+
+/* header */
+header .main-header {
+  max-width: 1160px;
+  margin: 0 auto;
+  padding: 0 20px;
+  height: 72px;
+  display: flex;
+  align-items: center;
+  color: var(--grey-3);
+}
+
+.main-header h2 {
+  flex: 1 1;
+  font-size: 24px;
+}
+
+.main-header .social-icons {
+  display: flex;
+  flex: 0 1 250px;
+  justify-content: space-around;
+  align-items: center;
+  padding: 0 22px;
+}
+
+.contact-me {
+  font-weight: 700;
+  font-size: 16px;
+  padding: 12px 22px;
+  border: 1px solid;
+  border-radius: var(--btn-radius);
+  border-color: var(--primary);
+  background-color: var(--primary);
+  color: var(--clouds);
+}
+
+.contact-me.reverse {
+  border-color: var(--primary);
+  background-color: transparent;
+  color: var(--grey-3);
+}
+
+/* header / end */
+
+/* navigation */
+nav {
+  border-top: 1px solid;
+  border-bottom: 1px solid;
+  border-color: var(--grey-0);
+  position: relative;
+}
+
+nav .navbar {
+  display: flex;
+  max-width: 1160px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.navbar ul {
+  display: flex;
+}
+
+.navbar ul#menu-info {
+  flex: 1 0 378px;
+}
+
+.navbar ul#menu-info .nav-link {
+  padding-left: 0;
+  padding-right: 22px;
+}
+
+.navbar ul#menu-projects {
+  flex: 1 1 100%;
+}
+
+.navbar .nav-link {
+  display: inline-block;
+  padding: 12px 6px;
+  padding-bottom: 9px;
+  border-bottom: 3px solid;
+  border-color: rgba(63, 202, 137, 0);
+}
+
+.nav-link#all {
+  padding-left: 12px;
+  padding-right: 12px;
+}
+
+/* navigation / end */

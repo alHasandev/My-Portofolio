@@ -6,44 +6,57 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>My Portofolio</title>
+
+  <link rel="stylesheet" href="./assets/styles/style.css">
+  <!-- link to css file -->
 </head>
 
 <body>
-  <header class="main-header">
-    <h3>My Portofolio</h3>
-    <ul>
-      <li>Telegram</li>
-      <li>Instagram</li>
-      <li>LinkedIn</li>
-    </ul>
-    <button class="contact-me">Contact Me</button>
+  <!-- header -->
+  <header>
+    <div class="main-header">
+      <h2>My Portofolio</h2>
+      <ul class="social-icons">
+        <li><i class="fab fa-telegram"></i></li>
+        <li><i class="fab fa-instagram"></i></li>
+        <li><i class="fab fa-linkedin"></i></li>
+      </ul>
+      <button class="contact-me reverse">Contact Me</button>
+    </div>
   </header>
+  <!-- header / end -->
+
+  <!-- navigation -->
   <nav>
-    <ul id="menu-info">
-      <li>
-        <a href="#" class="nav-item">Profile</a>
-      </li>
-      <li>
-        <a href="#" class="nav-item">Educations</a>
-      </li>
-      <li>
-        <a href="#" class="nav-item">Skills</a>
-      </li>
-      <li>
-        <a href="#" class="nav-item">Statistics</a>
-      </li>
-    </ul>
-    <ul id="menu-projects">
-      <li><a href="#" class="nav-link" id="all">*</a></li>
-      <li><a href="#" class="nav-link">HTML</a></li>
-      <li><a href="#" class="nav-link">CSS</a></li>
-      <li><a href="#" class="nav-link">Javascript</a></li>
-      <li><a href="#" class="nav-link">PHP</a></li>
-      <li><a href="#" class="nav-link">MySQL</a></li>
-      <li><a href="#" class="nav-link">NodeJS</a></li>
-      <li><a href="#" class="nav-link">MongoDB</a></li>
-    </ul>
+    <div class="navbar">
+      <ul id="menu-info">
+        <li>
+          <a href="#" class="nav-link">Profile</a>
+        </li>
+        <li>
+          <a href="#" class="nav-link">Educations</a>
+        </li>
+        <li>
+          <a href="#" class="nav-link">Skills</a>
+        </li>
+        <li>
+          <a href="#" class="nav-link">Statistics</a>
+        </li>
+      </ul>
+      <ul id="menu-projects">
+        <li><a href="#" class="nav-link" id="all">*</a></li>
+        <li><a href="#" class="nav-link">HTML</a></li>
+        <li><a href="#" class="nav-link">CSS</a></li>
+        <li><a href="#" class="nav-link">Javascript</a></li>
+        <li><a href="#" class="nav-link">PHP</a></li>
+        <li><a href="#" class="nav-link">MySQL</a></li>
+        <li><a href="#" class="nav-link">NodeJS</a></li>
+        <li><a href="#" class="nav-link">MongoDB</a></li>
+      </ul>
+    </div>
   </nav>
+  <!-- navigation / end -->
+
   <main class="container">
     <section class="info">
       <div class="card" id="contact">
@@ -86,6 +99,9 @@
     </section>
     <section class="projects-list"></section>
   </main>
+
+  <!-- script & library javascript -->
+  <script src="https://kit.fontawesome.com/0b05a63e95.js"></script>
 </body>
 
 </html>
