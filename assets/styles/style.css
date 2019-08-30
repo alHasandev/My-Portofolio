@@ -190,8 +190,10 @@ section.info .card {
   padding: 20px;
   border: 1px solid;
   border-color: var(--grey-1);
+  color: var(--dark);
 }
 
+/* card / profile */
 .avatar-box {
   width: 200px;
   height: 200px;
@@ -266,5 +268,85 @@ hr {
   font-weight: 700;
   color: var(--dark);
 }
+
+/* card / profile / end */
+
+/* card / education */
+.card h3 {
+  margin-bottom: 15px;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--dark);
+}
+
+.description p {
+  font-size: 14px;
+  line-height: 1.4rem;
+  color: var(--grey-3);
+}
+
+.educations {
+  font-size: 14px;
+}
+
+.educations h4 {
+  color: var(--grey-3);
+  margin-bottom: 12px;
+  font-size: 16px;
+}
+
+.educations ul {
+  margin-bottom: 12px;
+  position: relative;
+  margin-left: 7px;
+  padding-left: 14px;
+  border-left: 1px solid;
+  border-color: var(--grey-3);
+}
+
+.educations ul:last-child {
+  margin-bottom: 0;
+}
+
+.educations ul li {
+  margin: 10px 0;
+  display: grid;
+  grid-template-columns: auto 1fr;
+}
+
+.educations ul li .circle-check {
+  width: 15px;
+  height: 15px;
+  background-color: var(--white);
+  border: 1px solid;
+  border-color: var(--grey-3);
+  border-radius: 50%;
+  position: absolute;
+  left: -8px;
+}
+
+.educations ul li .circle-check.current {
+  background-color: var(--primary);
+}
+
+.educations ul li .circle-check.passed {
+  border-width: 2px;
+  border-color: var(--primary);
+}
+
+.educations ul li .years {
+  display: inline-block;
+  width: 75px;
+}
+
+.educations ul li div {
+  line-height: 1.4rem;
+}
+
+.educations ul li .institution span:last-child {
+  color: var(--grey-3);
+}
+
+/* card / education / end */
 
 /* main / container / end */
