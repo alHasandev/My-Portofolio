@@ -9,6 +9,7 @@
   --grey-2: #707070;
   --grey-1: #8B8B8B;
   --grey-0: #A7A4A4;
+  --hint-of-pensive: #dcdde1;
   --white: #fefefe;
   --clouds: #ecf0f1;
   --btn-radius: 6px;
@@ -107,12 +108,25 @@ header .main-header {
 
 /* header / end */
 
+/* float */
+#float {
+  background-color: var(--white);
+  /* position: fixed;
+  top: 0;
+  height: 100vh;
+  overflow: hidden; */
+  width: 100%;
+}
+
+/* float / end */
+
 /* navigation */
 nav {
   border-top: 1px solid;
   border-bottom: 1px solid;
   border-color: var(--grey-0);
-  position: relative;
+  /* position: relative; */
+  z-index: 3;
 }
 
 nav .navbar {
@@ -127,7 +141,7 @@ nav .navbar {
 }
 
 .navbar ul#menu-info {
-  flex: 1 0 378px;
+  flex: 1 0 377px;
 }
 
 .navbar ul#menu-info .nav-link {
@@ -161,7 +175,8 @@ nav .navbar {
   margin-right: 20px;
 }
 
-.navbar .nav-link:hover {
+.navbar .nav-link:hover,
+.navbar .nav-link.active {
   border-color: rgba(63, 202, 137, 1);
 }
 
@@ -184,17 +199,29 @@ nav .navbar {
   grid-template-columns: auto 1fr;
 }
 
+section.info {
+  display: grid;
+  grid-gap: 15px;
+  position: relative;
+  width: 378px;
+}
+
 section.info .card {
-  max-width: 378px;
+  /* max-width: 378px; */
   width: 100%;
-  min-height: 587px;
+  min-height: 592px;
   padding: 20px;
   border: 1px solid;
   border-color: var(--grey-1);
+  background-color: var(--white);
   color: var(--dark);
 }
 
 /* card / profile */
+.card#contact {
+  height: 592px;
+}
+
 .avatar-box {
   width: 200px;
   height: 200px;
@@ -274,7 +301,7 @@ hr {
 
 /* card / education */
 .card h3 {
-  margin-bottom: 15px;
+  margin-bottom: 10px;
   font-size: 18px;
   font-weight: 700;
   color: var(--dark);
@@ -292,7 +319,7 @@ hr {
 
 .card h4 {
   color: var(--grey-3);
-  margin-bottom: 12px;
+  margin-bottom: 10px;
   font-size: 16px;
 }
 
@@ -507,6 +534,46 @@ ul.stats-list li .stat-bar .stat-bar-value[data-id="11"] {
 }
 
 /* card / stats / end */
+
+/* projects list */
+.my-projects {
+  padding: 0 20px;
+}
+
+.my-projects h3 {
+  margin-bottom: 20px;
+}
+
+.my-projects .projects-list {
+  display: grid;
+  grid-gap: 10px;
+  grid-template-columns: repeat(auto-fill, minmax(225px, 1fr));
+}
+
+.my-projects .projects-list .project {
+  border: 1px solid;
+  border-color: var(--hint-of-pensive);
+}
+
+.my-projects .projects-list .project .desc {
+  padding: 5px 10px;
+  font-size: 10px;
+  color: var(--grey-3);
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.my-projects .projects-list .project .desc .tag {
+  display: inline-block;
+  padding: 2px 8px;
+  border: 1px solid;
+  border-color: var(--hint-of-pensive);
+  border-radius: 12px;
+  margin-right: 4px;
+  margin-bottom: 4px;
+}
+
+/* projects list / end */
 
 /* main / container / end */
 
