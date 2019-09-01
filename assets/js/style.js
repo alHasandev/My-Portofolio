@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
       document.getElementById('float').style.height = 'unset';
     }
 
-    console.log('scroll pos = ' + scrollPos);
+    // console.log('scroll pos = ' + scrollPos);
     // console.log('scroll num=' + scrollNum);
 
     //   if ((document.body.getBoundingClientRect()).top > scrollPos) {
