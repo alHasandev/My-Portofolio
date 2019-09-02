@@ -1,6 +1,7 @@
-// create dummy data
+// prepare HTML Element References
+const projectContainer = document.getElementById('project-container');
 
-// projects
+// create dummy data / project
 const projects = [{
     title: 'E-Commerce App',
     link: 'http://localhost/#android',
@@ -51,11 +52,18 @@ const projects = [{
   }
 ];
 
-// function / create Project Object
+// function / create Project Class / Blueprint
 function Project(items) {
   this.items = items;
 }
 
+// add prototype method to Project Class -> Limit the output number
+Project.prototype.limit = function (end, start = 0) {
+  this.items = this.items.slice(start, end);
+  return this;
+}
+
+// add prototype method to Project Class -> get certain data by searched property value "string"
 Project.prototype.getBy = function ({
   search,
   value
@@ -65,24 +73,32 @@ Project.prototype.getBy = function ({
   return this;
 }
 
+// add prototype method to Project Class -> get certain data by searched property value "array"
 Project.prototype.getByArray = function ({
   search,
   array
 }) {
-  this.items = this.items.filter(item => array.some(tag => item[search].includes(tag)));
+  this.items = this.items.filter(item => array.some(tag => {
+    // convert filter and array item to lowercase
+    let searched = item[search].map(value => value.toLowerCase());
+
+    // return filtered array
+    return searched.includes(tag.toLowerCase());
+  }));
   return this;
 }
 
-let allProjects = new Project(projects);
+// initialize all projects data
+let allProjects = new Project(projects).limit(6);
 
 let ecommerceApp = new Project(projects).getBy({
   search: 'title',
-  value: 'E-Commerce App'
+  value: 'app'
 });
 
 let Javascript = new Project(projects).getByArray({
   search: 'tag',
   array: [
-    'HTML', 'CSS', 'Javascript'
+    'html', 'css', 'javascript'
   ]
 });

@@ -1,29 +1,41 @@
+// prepare HTML Element References
+const menuInfo = document.getElementById('menu-info');
+const menuProject = document.getElementById('menu-projects');
+
 document.addEventListener('DOMContentLoaded', () => {
   onhashchange = (ev) => {
     // get new url after hashchange triggered
     let url = ev.newURL;
+    let hash = location.hash;
+
 
     // ev.preventDefault();
 
     // console.log(getLastParam(location.hash));
 
     if (getLastParam(url, 2) == '#tag') {
-      console.log(getLastParam(url, 1));
+      let tag = getLastParam(url, 1);
+      console.log(tag);
+      menuPointer(hash, menuProject);
+      selectedTag(tag);
     } else {
-      let hash = location.hash;
       let oldHash = getLastParam(ev.oldURL, 1);
       // console.log(oldHash);
 
       // set start
       let start = getHashNum(oldHash) + 1;
-      console.log(start);
+      // console.log(start);
 
       // set end
       let end = getHashNum(hash);
-      console.log(end);
+      // console.log(end);
 
+      menuPointer(hash, menuInfo);
       cardsArrange(start, end);
+
+
     }
+
   }
 
 
@@ -35,6 +47,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // set end
     let end = getHashNum(hash);
 
+    menuPointer(hash, menuInfo);
     cardsArrange(start, end);
   }
 });
@@ -43,11 +56,43 @@ const allCards = document.querySelectorAll('.card');
 
 // function / hashChangeHandler
 function hashChangeHandler(hash, callback) {
+  // check if hash changed
   if (location.hash == hash) {
     callback(hash);
   } else {
     return false;
   }
+}
+
+// function / change marked menu link
+function menuPointer(hash, parent) {
+  // get HTML Element References of parent
+  let allLink = parent.querySelectorAll('a');
+  let target = parent.querySelector(`a[href="${hash}"`);
+
+  // remove class active from all menu link
+  allLink.forEach(link => {
+    link.classList.remove('active');
+  });
+
+  // add class active for clicked link / target click
+  target.classList.add('active');
+  // console.log(parent.querySelector(`a[href="${hash}"`));
+}
+
+// function / show based on selected tag menu
+function selectedTag(tag) {
+  let result = new Project(projects).limit(6);
+  if (tag !== 'all') {
+    result = new Project(projects).getByArray({
+      search: 'tag',
+      array: [tag]
+    }).limit(6);
+  }
+
+
+  renderHtml(projectContainer, getStringOf(createProjects(result.items)));
+  // console.log(result.items);
 }
 
 // function / get last url param
@@ -98,7 +143,7 @@ function cardsArrange(start, end) {
           allCards[i].style.position = 'absolute';
           allCards[i].style.top = `${100-no}%`;
           no++;
-          console.log(no);
+          // console.log(no);
         }, 8);
       }, time * stamp);
 
@@ -119,7 +164,7 @@ function cardsArrange(start, end) {
           allCards[i].style.position = 'absolute';
           allCards[i].style.top = `${0+no}%`;
           no++;
-          console.log(no);
+          // console.log(no);
         }, 8);
       }, time * stamp);
 

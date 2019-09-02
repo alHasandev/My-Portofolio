@@ -21,7 +21,7 @@
         <li><i class="fab fa-instagram"></i></li>
         <li><i class="fab fa-linkedin"></i></li>
       </ul>
-      <button class="contact-me reverse">Contact Me</button>
+      <button class="btn reverse">Contact Me</button>
     </div>
   </header>
   <!-- header / end -->
@@ -50,9 +50,9 @@
           <li><a href="#tag/css" class="nav-link">CSS</a></li>
           <li><a href="#tag/javascript" class="nav-link">Javascript</a></li>
           <li><a href="#tag/php" class="nav-link">PHP</a></li>
-          <li><a href="#" class="nav-link">MySQL</a></li>
-          <li><a href="#" class="nav-link">NodeJS</a></li>
-          <li><a href="#" class="nav-link">MongoDB</a></li>
+          <li><a href="#tag/mysql" class="nav-link">MySQL</a></li>
+          <li><a href="#tag/nodejs" class="nav-link">NodeJS</a></li>
+          <li><a href="#tag/mongodb" class="nav-link">MongoDB</a></li>
           <li><a href="#" class="nav-link">MongoDB</a></li>
           <li><a href="#" class="nav-link">MongoDB</a></li>
           <li><a href="#" class="nav-link">MongoDB</a></li>
@@ -79,7 +79,7 @@
                 Web Developer, Software Programmer, Student in Informatics Engineering
               </p>
             </div>
-            <button class="contact-me">Contact Me</button>
+            <button class="btn">Contact Me</button>
             <hr>
             <div class="contact-info">
               <div class="contact-item">
@@ -328,6 +328,7 @@
             <!-- this will filled with javascript -->
 
           </div>
+          <a href="#" class="btn" id="more-projects">More</a>
         </section>
       </div>
     </main>
@@ -336,11 +337,20 @@
 
   <!-- script & library javascript -->
   <script src="https://kit.fontawesome.com/0b05a63e95.js"></script>
-  <script src="./assets/js/htmltag.js"></script>
   <script src="./assets/js/data.js"></script>
+  <script src="./assets/js/simple-libary.js"></script>
+  <script src="./assets/js/render.js"></script>
   <script src="./assets/js/style.js"></script>
   <script src="./assets/js/route.js"></script>
-  <script src="./assets/js/render.js"></script>
+  <script>
+    // redirect if url not base url
+    if (location.href !== location.origin + '/') {
+      // check for #hash
+      if (getLastParam(location.href, 1) !== location.hash)
+        location.href = location.origin;
+      else location.hash;
+    }
+  </script>
 </body>
 
 </html>

@@ -1,12 +1,3 @@
-function renderHtml(parent, element) {
-  parent = parent || HTMLElement;
-  parent.innerHTML = element;
-}
-
-function createProjects(array) {
-  return array.map(item => projectCard(item.img, item.tag));
-}
-
 const image = function (src, classNames) {
   return htmltag({
     tag: 'img',
@@ -58,7 +49,6 @@ const projectCard = function (imgSrc, tags) {
 
 // prepare HTMLElement References
 // const main = document.getElementById('main');
-const projectContainer = document.getElementById('project-container');
 
 renderHtml(projectContainer, getStringOf(createProjects(allProjects.items)));
 

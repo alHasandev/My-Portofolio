@@ -24,3 +24,12 @@ function htmltag({
 function getStringOf(listItems) {
   return listItems != undefined ? (Array.isArray(listItems) ? listItems.join(' ') : listItems) : '';
 }
+
+function renderHtml(parent, element) {
+  parent = parent || HTMLElement;
+  parent.innerHTML = element;
+}
+
+function createProjects(array) {
+  return array.map(item => projectCard(item.img, item.tag));
+}
