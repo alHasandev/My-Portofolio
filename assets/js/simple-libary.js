@@ -25,11 +25,19 @@ function getStringOf(listItems) {
   return listItems != undefined ? (Array.isArray(listItems) ? listItems.join(' ') : listItems) : '';
 }
 
-function renderHtml(parent, element) {
+function renderHtml(parent, element, override = true) {
   parent = parent || HTMLElement;
-  parent.innerHTML = element;
+  if (override) {
+    parent.innerHTML = element;
+  } else {
+    parent.innerHTML += element;
+  }
 }
 
 function createProjects(array) {
   return array.map(item => projectCard(item.img, item.tag));
+}
+
+function createMenu(tags) {
+  return tags.map(tag => menuLink(tag));
 }

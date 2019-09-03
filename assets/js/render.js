@@ -47,9 +47,26 @@ const projectCard = function (imgSrc, tags) {
   });
 }
 
+const menuLink = function (tag) {
+  return htmltag({
+    tag: 'li',
+    innerHtml: htmltag({
+      tag: 'a',
+      classNames: [
+        'nav-link'
+      ],
+      attributes: {
+        href: `#tag/${tag}`
+      },
+      innerHtml: tag
+    })
+  });
+}
+
 // prepare HTMLElement References
 // const main = document.getElementById('main');
 
 renderHtml(projectContainer, getStringOf(createProjects(allProjects.items)));
+renderHtml(menuProject, getStringOf(createMenu(tagsList)), false);
 
 // console.log(createProjects(allProjects.items));

@@ -1,54 +1,73 @@
 // prepare HTML Element References
-const menuInfo = document.getElementById('menu-info');
-const menuProject = document.getElementById('menu-projects');
+const selectedTag = new State('Selected Tag', []);
+// check media width
+let matches = window.matchMedia("(min-width: 968px)").matches;
+console.log(matches);
 
 document.addEventListener('DOMContentLoaded', () => {
-  onhashchange = (ev) => {
-    // get new url after hashchange triggered
-    let url = ev.newURL;
-    let hash = location.hash;
 
 
-    // ev.preventDefault();
 
-    // console.log(getLastParam(location.hash));
+  if (matches) {
+    onhashchange = (ev) => {
+      // get new url after hashchange triggered
+      let url = ev.newURL;
+      let hash = location.hash;
 
-    if (getLastParam(url, 2) == '#tag') {
-      let tag = getLastParam(url, 1);
-      console.log(tag);
-      menuPointer(hash, menuProject);
-      selectedTag(tag);
-    } else {
-      let oldHash = getLastParam(ev.oldURL, 1);
-      // console.log(oldHash);
 
-      // set start
-      let start = getHashNum(oldHash) + 1;
-      // console.log(start);
+      // ev.preventDefault();
 
-      // set end
-      let end = getHashNum(hash);
-      // console.log(end);
+      // console.log(getLastParam(location.hash));
 
-      menuPointer(hash, menuInfo);
-      cardsArrange(start, end);
+      if (getLastParam(url, 2) == '#tag') {
+        let tag = getLastParam(url, 1);
+        console.log(tag);
+        // menuPointer(hash, menuProject);
+        // selectTag(tag);
+      } else {
+        let oldHash = getLastParam(ev.oldURL, 1);
+        // console.log(oldHash);
 
+        // set start
+        let start = getHashNum(oldHash) + 1;
+        // console.log(start);
+
+        // set end
+        let end = getHashNum(hash);
+        // console.log(end);
+
+        menuPointer(hash, menuInfo);
+        cardsArrange(start, end);
+
+
+      }
 
     }
-
   }
 
 
 
-  if (location.hash) {
-    let hash = location.hash;
-    // set start = 1;
-    let start = 1;
-    // set end
-    let end = getHashNum(hash);
+  if (matches) {
+    if (location.hash) {
+      let hash = location.hash;
+      // set start = 1;
+      let start = 1;
+      // set end
+      let end = getHashNum(hash);
 
-    menuPointer(hash, menuInfo);
-    cardsArrange(start, end);
+      menuPointer(hash, menuInfo);
+      cardsArrange(start, end);
+    }
+
+    // get selected tag
+    // listen to event click : menuProjects li a
+    menuProject.addEventListener('click', (ev) => {
+      // prevent Default
+      ev.preventDefault();
+
+      // call function / filter tag
+      filterTag(ev.target);
+    });
   }
 });
 
@@ -81,18 +100,60 @@ function menuPointer(hash, parent) {
 }
 
 // function / show based on selected tag menu
-function selectedTag(tag) {
+function selectTag(tag) {
   let result = new Project(projects).limit(6);
   if (tag !== 'all') {
     result = new Project(projects).getByArray({
       search: 'tag',
-      array: [tag]
+      array: tag
     }).limit(6);
   }
 
 
   renderHtml(projectContainer, getStringOf(createProjects(result.items)));
   // console.log(result.items);
+}
+
+// function / tag filter handler
+function filterTag(target) {
+  // get HTML Element References of parent
+  const tagAll = document.getElementById('all');
+
+  if (target.classList.contains('nav-link') || target.classList.contains('tag-all')) {
+
+    let tag = target.classList.contains('nav-link') ? getLastParam(target.href, 1) : 'all';
+
+    if (target === tagAll || target.classList.contains('tag-all')) {
+      // console.log(target);
+      // reset state to null
+      selectedTag.stateChange({
+        stateValue: []
+      });
+    } else
+    if (target.classList.contains('active')) {
+      target.classList.remove('active');
+      selectedTag.stateChange({
+        stateValue: tag,
+        method: 'remove'
+      });
+    } else {
+      target.classList.add('active');
+      selectedTag.stateChange({
+        stateValue: tag,
+        method: 'add'
+      });
+    }
+
+    if (selectedTag.stateValues.length > 0) {
+
+      tagAll.classList.remove('active');
+    } else {
+      menuPointer('#tag/all', menuProject);
+    }
+
+    // console.log(selectedTag.stateValues);
+    selectTag(selectedTag.stateValues);
+  }
 }
 
 // function / get last url param
@@ -169,6 +230,54 @@ function cardsArrange(start, end) {
       }, time * stamp);
 
       stamp++;
+    }
+  }
+}
+
+// object Class / State
+function State(stateName, initialValue) {
+  this.stateName = stateName;
+  this.stateValues = initialValue;
+}
+
+// add prototype Method to State Class Object
+State.prototype.stateChange = function ({
+  stateName,
+  stateValue,
+  method = 'change'
+}) {
+  if (stateName !== undefined) {
+    this.stateName = stateName;
+  }
+
+  if (stateValue !== undefined) {
+    switch (method) {
+      case 'change':
+        if (Array.isArray(stateValue)) {
+          this.stateValues = stateValue;
+        } else {
+          this.stateValues = [stateValue];
+        }
+        break;
+      case 'add':
+        if (Array.isArray(stateValue)) {
+          this.stateValues = this.stateValues.concat(stateValue);
+        } else {
+          this.stateValues.push(stateValue);
+        }
+        break;
+      case 'remove':
+        if (Array.isArray(stateValue)) {
+          stateValue = stateValue.map(value => value.toLowerCase());
+          this.stateValues = this.stateValues.filter(tag => !stateValue.includes(tag.toLowerCase()));
+        } else {
+          let index = this.stateValues.indexOf(stateValue);
+          this.stateValues.splice(index, 1);
+        }
+        break;
+
+      default:
+        break;
     }
   }
 }

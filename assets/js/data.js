@@ -1,4 +1,6 @@
 // prepare HTML Element References
+const menuInfo = document.getElementById('menu-info');
+const menuProject = document.getElementById('menu-projects');
 const projectContainer = document.getElementById('project-container');
 
 // create dummy data / project
@@ -52,6 +54,22 @@ const projects = [{
   }
 ];
 
+// create dummy data / tags list
+const tagsList = [
+  'HTML',
+  'CSS',
+  'JavaScript',
+  'PHP',
+  'MySQL',
+  'Bootstrap',
+  'Java',
+  'NodeJS',
+  'Firebase',
+  'MongoDB',
+  'Laravel',
+  'CodeIgniter'
+];
+
 // function / create Project Class / Blueprint
 function Project(items) {
   this.items = items;
@@ -78,13 +96,23 @@ Project.prototype.getByArray = function ({
   search,
   array
 }) {
-  this.items = this.items.filter(item => array.some(tag => {
+  this.items = this.items.filter(item => {
     // convert filter and array item to lowercase
-    let searched = item[search].map(value => value.toLowerCase());
-
+    // let searched = item[search].map(value => value.toLowerCase());
+    let selected = array.map(value => value.toLowerCase());
+    let count = item[search].filter(searchValue => {
+      return selected.includes(searchValue.toLowerCase());
+    });
     // return filtered array
-    return searched.includes(tag.toLowerCase());
-  }));
+    // return searched.includes(tag.toLowerCase());
+    if (count.length >= array.length) {
+      // console.log(count);
+      return true;
+    } else {
+      // console.log(count);
+      return false;
+    }
+  });
   return this;
 }
 
@@ -99,6 +127,6 @@ let ecommerceApp = new Project(projects).getBy({
 let Javascript = new Project(projects).getByArray({
   search: 'tag',
   array: [
-    'html', 'css', 'javascript'
+    'html', 'css', 'javascript', 'mysql'
   ]
 });
